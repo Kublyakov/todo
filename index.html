@@ -12,5 +12,31 @@
 
 <h1>Simple TODO</h1>
 
+<div class="wrapper">
+  <div class="enter-container">
+    <div class="complete-all">✔</div>
+    <input type="text" class="enter-input" placeholder="What needs to be done?">
+  </div>
+
+  <ul class="list">
+    <li class="item">
+      <label for="item1">✔</label>
+      <input type="checkbox" id="item1">
+      <div class="todo-text">Todo text</div>
+      <button class="item-delete">x</button>
+    </li>
+  </ul>
+
+  <div class="bottom-panel">
+    <div class="count">0 items left</div>
+    <div class="tabs">
+      <button class="active">All</button>
+      <button>Active</button>
+      <button>Completed</button>
+    </div>
+    <button class="clear-completed">Clear completed</button>
+  </div>
+</div>
+
 </body>
 </html>
