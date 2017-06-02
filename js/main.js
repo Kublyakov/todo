@@ -1,7 +1,10 @@
 'use strict';
 const newTodo = document.querySelector('.new-todo');
 const list = document.querySelector('.list');
+const showAllBtn = document.querySelector('.show-all');
 const showActiveBtn = document.querySelector('.show-active');
+const showCompletedBtn = document.querySelector('.show-completed');
+const clearCompletedBtn = document.querySelector('.clear-completed');
 
 newTodo.addEventListener('keypress', (e) => {
   let target = e.target;
@@ -56,14 +59,50 @@ const changeItemStatus = () => {
   });
 };
 
+// Показать все пункты
+showAllBtn.addEventListener('click', () => {
+  let children = list.children;
+  for(let i = 0; i < children.length; i++) {
+    children[i].classList.remove('hide');
+  }
+});
+
 // Показать активные пункты
 showActiveBtn.addEventListener('click', () => {
-  list.children.forEach((item) => {
-    if(!(item.classList.contains('completed'))) {
-      this.classList.add('hide');
+  let children = list.children;
+  for(let i = 0; i < children.length; i++) {
+    if(children[i].classList.contains('completed')) {
+      children[i].classList.add('hide');
+    } else {
+      children[i].classList.remove('hide');
     }
-  });
+  }
 });
+
+// Показать выполненные пункты
+showCompletedBtn.addEventListener('click', () => {
+  let children = list.children;
+  for(let i = 0; i < children.length; i++) {
+    if(!(children[i].classList.contains('completed'))) {
+      children[i].classList.add('hide');
+    } else {
+      children[i].classList.remove('hide');
+    }
+  }
+});
+
+// Удалить выполненные
+clearCompletedBtn.addEventListener('click', (e) => {
+  let children = list.children;
+  for(let i = 0; i < children.length; i++) {
+    if (children[i].classList.contains('completed')) {
+      children[i].remove();
+      itemsCount();
+    }
+  }
+});
+
+
 
 
 deleteItem();
