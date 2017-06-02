@@ -1,26 +1,26 @@
 'use strict';
 const newTodo = document.querySelector('.new-todo');
 const list = document.querySelector('.list');
+const showActiveBtn = document.querySelector('.show-active');
 
 newTodo.addEventListener('keypress', (e) => {
   let target = e.target;
   if(e.keyCode === 13 && target.value.length > 0) {
-    addItem("1", target.value);
+    addItem(target.value);
     target.value = '';
     itemsCount();
   }
 });
 
-const addItem = (id, text) => {
-  list.insertAdjacentHTML('afterBegin', itemTemplate(id, text));
+const addItem = (text) => {
+  list.insertAdjacentHTML('afterBegin', itemTemplate(text));
 };
 
 // Шаблон
-const itemTemplate = (id, text) => {
-return `
+const itemTemplate = (text) => {
+  return `
 <li class="item">
-  <label for="item${id}">✔</label>
-  <input type="checkbox" id="item${id}">
+  <button class="change-status">✔</button>
   <div class="todo-text">${text}</div>
   <button class="item-delete">x</button>
 </li>
@@ -45,4 +45,26 @@ const deleteItem = () => {
   });
 };
 
+// Поменять статус выбранного пункта
+const changeItemStatus = () => {
+  list.addEventListener('click', (e) => {
+    let target = e.target;
+    if(target.className === 'change-status') {
+      target.parentNode.classList.toggle('completed');
+      itemsCount();
+    }
+  });
+};
+
+// Показать активные пункты
+showActiveBtn.addEventListener('click', () => {
+  list.children.forEach((item) => {
+    if(!(item.classList.contains('completed'))) {
+      this.classList.add('hide');
+    }
+  });
+});
+
+
 deleteItem();
+changeItemStatus();
