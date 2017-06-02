@@ -14,18 +14,11 @@
 
 <div class="wrapper">
   <div class="enter-container">
-    <div class="complete-all">✔</div>
-    <input type="text" class="enter-input" placeholder="What needs to be done?">
+    <button class="complete-all">✔</button>
+    <input type="text" class="new-todo" placeholder="What needs to be done?" autofocus>
   </div>
 
-  <ul class="list">
-    <li class="item">
-      <label for="item1">✔</label>
-      <input type="checkbox" id="item1">
-      <div class="todo-text">Todo text</div>
-      <button class="item-delete">x</button>
-    </li>
-  </ul>
+  <ul class="list"></ul>
 
   <div class="bottom-panel">
     <div class="count">0 items left</div>
@@ -38,5 +31,6 @@
   </div>
 </div>
 
+<script src="js/main.js"></script>
 </body>
 </html>

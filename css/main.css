@@ -56,3 +56,11 @@ table {
 *, :before, :after {
   box-sizing: border-box;
 }
+
+.item {
+  display: flex;
+}
+
+.todo-text {
+  width: 148px;
+}
