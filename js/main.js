@@ -58,6 +58,27 @@ list.addEventListener('click', (e) => {
   }
 });
 
+list.addEventListener('dblclick', (e) => {
+  let target = e.target;
+  if(target.className === 'todo-text') {
+    let content = target.textContent;
+    let input = document.createElement('input');
+    input.type = 'text';
+    input.value = content;
+    input.classList.add('edit-item');
+    target.parentNode.appendChild(input);
+    input.focus();
+    input.addEventListener('blur', () => {
+      input.classList.add('hide');
+      if(input.value.length === 0) {
+        target.parentNode.remove();
+      } else {
+        target.textContent = input.value;
+      }
+    });
+  }
+});
+
 // Показать все пункты
 showAllBtn.addEventListener('click', () => {
   let children = list.children;

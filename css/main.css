@@ -53,12 +53,20 @@ table {
   border-spacing: 0;
 }
 
-*, :before, :after {
+*, *:before, *:after {
   box-sizing: border-box;
 }
 
 .item {
+  position: relative;
   display: flex;
+}
+
+.edit-item {
+  position: absolute;
+  left: 31px;
+  top: 0;
+  height: 23px;
 }
 
 .item.completed {
@@ -68,6 +76,7 @@ table {
 
 .todo-text {
   width: 154px;
+  padding-left: 4px;
 }
 
 .hide {
