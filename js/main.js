@@ -7,12 +7,12 @@ const showCompletedBtn = document.querySelector('.show-completed');
 const clearCompletedBtn = document.querySelector('.clear-completed');
 const completeAllBtn = document.querySelector('.complete-all');
 
+// Добавить пункт
 newTodo.addEventListener('keypress', (e) => {
   let target = e.target;
   if(e.keyCode === 13 && target.value.length > 0) {
     addItem(target.value);
     target.value = '';
-    itemsCount();
   }
 });
 
@@ -44,27 +44,19 @@ const itemsCount = () => {
   count !== 1 ? countElem.innerHTML = `${count} items left` : countElem.innerHTML = `${count} item left`;
 };
 
-// Удалить выбранный пункт
-const deleteItem = () => {
-  list.addEventListener('click', (e) => {
-    let target = e.target;
-    if(target.className === 'item-delete') {
-      target.parentNode.remove();
-      itemsCount();
-    }
-  });
-};
+list.addEventListener('click', (e) => {
+  let target = e.target;
 
-// Поменять статус выбранного пункта
-const changeItemStatus = () => {
-  list.addEventListener('click', (e) => {
-    let target = e.target;
-    if(target.className === 'change-status') {
-      target.parentNode.classList.toggle('completed');
-      itemsCount();
-    }
-  });
-};
+  // Удалить выбранный пункт
+  if(target.className === 'item-delete') {
+    target.parentNode.remove();
+  }
+
+  // Поменять статус выбранного пункта
+  if(target.className === 'change-status') {
+    target.parentNode.classList.toggle('completed');
+  }
+});
 
 // Показать все пункты
 showAllBtn.addEventListener('click', () => {
@@ -104,7 +96,6 @@ clearCompletedBtn.addEventListener('click', (e) => {
   for(let i = 0; i < children.length; i++) {
     if (children[i].classList.contains('completed')) {
       children[i].remove();
-      itemsCount();
     }
   }
 });
@@ -126,6 +117,9 @@ completeAllBtn.addEventListener('click', () => {
   }
 });
 
+const observer = new MutationObserver(() => {
+  itemsCount()
+});
+const observerConfig = {attributes: true, childList: true, characterData: true, subtree: true};
 
-deleteItem();
-changeItemStatus();
+observer.observe(list, observerConfig);
