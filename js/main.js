@@ -5,6 +5,7 @@ const showAllBtn = document.querySelector('.show-all');
 const showActiveBtn = document.querySelector('.show-active');
 const showCompletedBtn = document.querySelector('.show-completed');
 const clearCompletedBtn = document.querySelector('.clear-completed');
+const completeAllBtn = document.querySelector('.complete-all');
 
 newTodo.addEventListener('keypress', (e) => {
   let target = e.target;
@@ -102,7 +103,22 @@ clearCompletedBtn.addEventListener('click', (e) => {
   }
 });
 
-
+let isComplete = false;
+// Пометить все пункты как выполненные
+completeAllBtn.addEventListener('click', () => {
+  let children = list.children;
+  if(!isComplete) {
+    for(let i = 0; i < children.length; i++) {
+      children[i].classList.add('completed');
+    }
+    isComplete = true;
+  } else {
+    for(let i = 0; i < children.length; i++) {
+      children[i].classList.remove('completed');
+    }
+    isComplete = false;
+  }
+});
 
 
 deleteItem();
