@@ -31,10 +31,16 @@ const itemTemplate = (text) => {
 `
 };
 
-// Показывать количество элементов в списке
+// Показывать количество активных элементов в списке
 const itemsCount = () => {
   const countElem = document.querySelector('.count');
-  let count = list.children.length;
+  let children = list.children;
+  let count = 0;
+  for(let i = 0; i < children.length; i++) {
+    if(!(children[i].classList.contains('completed'))) {
+      count++;
+    }
+  }
   count !== 1 ? countElem.innerHTML = `${count} items left` : countElem.innerHTML = `${count} item left`;
 };
 
